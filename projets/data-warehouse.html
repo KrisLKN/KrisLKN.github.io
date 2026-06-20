@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Warehouse Chinook - Kris LOKOUN</title>
+  <meta name="description" content="Chinook Data Warehouse project: 3-layer ELT architecture (DSA/ODS/DWH) with SQL Server, SSIS, star schema, SCD2 and Power BI reporting." />
+  <meta name="author" content="Kris LOKOUN" />
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Data Warehouse Chinook - Kris LOKOUN" />
+  <meta property="og:description" content="3-layer ELT architecture with SQL Server, SSIS, star schema, SCD2 and Power BI reporting." />
+  <meta property="og:image" content="../assets/img/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/project.css" />
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="../index.html" class="nav-logo">Kris<span>.</span></a>
+    <div class="nav-right">
+      <a href="../index.html#projects" class="nav-back" data-i18n="nav.back">Retour a l'accueil</a>
+      <div class="lang-switch">
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="theme">
+        <svg id="iconMoon" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg id="iconSun" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="proj-header">
+  <div class="container">
+    <p class="proj-eyebrow" data-i18n="proj.dwh.tag">Projet phare</p>
+    <h1 class="proj-title" data-i18n="proj.dwh.title">Data Warehouse Chinook</h1>
+    <p class="proj-subtitle" data-i18n="dwh.subtitle">Entrepot de donnees decisionnel</p>
+    <div class="proj-meta">
+      <span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg><span data-i18n="dwh.meta.role">Role</span></span>
+      <span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span data-i18n="dwh.meta.period">Periode</span></span>
+    </div>
+    <div class="proj-actions">
+      <a href="https://github.com/KrisLKN/data-warehouse-chinook-s4" target="_blank" class="btn btn-primary">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span data-i18n="pp.repo">Code source sur GitHub</span>
+      </a>
+      <a href="../index.html#projects" class="btn btn-outline" data-i18n="pp.backProjects">Tous les projets</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="proj-section" style="border-top:none;">
+    <div class="container reveal">
+      <div class="proj-figures">
+        <div class="fig"><div class="fig-num">11</div><div class="fig-label" data-i18n="fig.dwh.1">Tables sources</div></div>
+        <div class="fig"><div class="fig-num">15 000</div><div class="fig-label" data-i18n="fig.dwh.2">Lignes traitees</div></div>
+        <div class="fig"><div class="fig-num">3</div><div class="fig-label" data-i18n="fig.dwh.3">Couches ELT</div></div>
+        <div class="fig"><div class="fig-num">5</div><div class="fig-label" data-i18n="fig.dwh.4">Dashboards Power BI</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="container proj-grid reveal">
+      <h2 data-i18n="pp.context">Contexte</h2>
+      <div class="proj-body"><p data-i18n="dwh.context.text">...</p></div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="container proj-grid reveal">
+      <h2 data-i18n="pp.objectives">Objectifs</h2>
+      <div class="proj-body">
+        <ul class="obj-list">
+          <li data-i18n="dwh.obj.1">...</li>
+          <li data-i18n="dwh.obj.2">...</li>
+          <li data-i18n="dwh.obj.3">...</li>
+          <li data-i18n="dwh.obj.4">...</li>
+          <li data-i18n="dwh.obj.5">...</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="container proj-grid reveal">
+      <h2 data-i18n="pp.approach">Demarche</h2>
+      <div class="proj-body">
+        <p data-i18n="dwh.approach.text">...</p>
+        <div class="flow-box" data-i18n="dwh.approach.flow">Source -> DSA -> ODS -> DWH -> Power BI</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="container proj-grid reveal">
+      <h2 data-i18n="pp.stack">Technologies</h2>
+      <div class="proj-body">
+        <div class="tag-row">
+          <span class="tag">SQL Server</span><span class="tag">SSIS</span><span class="tag">SSMS</span>
+          <span class="tag">ETL / ELT</span><span class="tag">DSA / ODS / DWH</span>
+          <span class="tag">Modele en etoile</span><span class="tag">SCD2</span><span class="tag">Power BI</span><span class="tag">DAX</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="container proj-grid reveal">
+      <h2 data-i18n="pp.results">Resultats</h2>
+      <div class="proj-body"><p data-i18n="dwh.results.text">...</p></div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="container reveal">
+      <h2 style="margin-bottom:28px;" data-i18n="pp.gallery">Galerie</h2>
+      <div class="gallery">
+        <figure class="shot"><img src="../assets/img/projets/data-warehouse/synthese.jpg" alt="" loading="lazy"><figcaption data-i18n="dwh.cap.synthese">Synthese</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/projets/data-warehouse/ventes.jpg" alt="" loading="lazy"><figcaption data-i18n="dwh.cap.ventes">Ventes</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/projets/data-warehouse/clients.jpg" alt="" loading="lazy"><figcaption data-i18n="dwh.cap.client">Client</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/projets/data-warehouse/catalogue.jpg" alt="" loading="lazy"><figcaption data-i18n="dwh.cap.catalogue">Catalogue</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/projets/data-warehouse/employes.jpg" alt="" loading="lazy"><figcaption data-i18n="dwh.cap.employes">Employes</figcaption></figure>
+        <figure class="shot contain"><img src="../assets/img/projets/data-warehouse/etoile.png" alt="" loading="lazy"><figcaption data-i18n="dwh.cap.etoile">Modele en etoile</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/projets/data-warehouse/ssis-load.png" alt="" loading="lazy"><figcaption data-i18n="dwh.cap.ssis">Chargement SSIS</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/projets/data-warehouse/etl.png" alt="" loading="lazy"><figcaption data-i18n="dwh.cap.etl">ETL</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/projets/data-warehouse/scd2.png" alt="" loading="lazy"><figcaption data-i18n="dwh.cap.scd2">SCD2</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/projets/data-warehouse/fact.png" alt="" loading="lazy"><figcaption data-i18n="dwh.cap.fact">Table de faits</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/projets/data-warehouse/run-dsa.jpg" alt="" loading="lazy"><figcaption data-i18n="dwh.cap.rundsa">Chargement DSA</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/projets/data-warehouse/run-ods.jpg" alt="" loading="lazy"><figcaption data-i18n="dwh.cap.runods">Chargement ODS</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/projets/data-warehouse/scd2-details.jpg" alt="" loading="lazy"><figcaption data-i18n="dwh.cap.scd2details">SCD2 detaille</figcaption></figure>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <p><span data-i18n="footer.by">Fait par</span> <strong>Kris LOKOUN</strong> - <span id="year"></span></p>
+    <a href="../index.html#projects" class="nav-back" data-i18n="pp.backProjects">Tous les projets</a>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="../assets/js/theme.js"></script>
+<script src="../assets/js/i18n.js"></script>
+<script src="../assets/js/lightbox.js"></script>
+</body>
+</html>

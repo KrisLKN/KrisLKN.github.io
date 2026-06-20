@@ -1,0 +1,24 @@
+# === Ne jamais publier sur GitHub : documents et sources personnels ===
+
+# Dossiers sources (originaux haute resolution, documents internes)
+PHOTO PORTFOLIO/
+S4/
+
+# Documents personnels (rapports, brouillons, anciennes versions)
+*.docx
+*.doc
+portfolio.txt
+PORTFOLIO_LOKOUN_KRIS*.docx
+RAPPORT*.docx
+LOKOUN-Portfolio-Stage.pdf
+
+# Fichiers de travail / temporaires
+*.code-workspace
+~$*
+~WRL*.tmp
+*.tmp
+.DS_Store
+Thumbs.db
+
+# === Publies sur GitHub (le site) ===
+# index.html, projets/, assets/, i18n.js, theme.js, project.css, cv.pdf

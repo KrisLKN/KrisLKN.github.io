@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MonVoyage - Kris LOKOUN</title>
+  <meta name="description" content="MonVoyage: object-oriented Python app that plans trips by collecting web data (APIs + BeautifulSoup), with budget estimation and an interactive Folium map." />
+  <meta name="author" content="Kris LOKOUN" />
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="MonVoyage - Kris LOKOUN" />
+  <meta property="og:description" content="Object-oriented Python trip planner: APIs, web scraping, budget estimation and interactive Folium map." />
+  <meta property="og:image" content="../assets/img/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/project.css" />
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="../index.html" class="nav-logo">Kris<span>.</span></a>
+    <div class="nav-right">
+      <a href="../index.html#projects" class="nav-back" data-i18n="nav.back">Retour a l'accueil</a>
+      <div class="lang-switch">
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="theme">
+        <svg id="iconMoon" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg id="iconSun" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="proj-header">
+  <div class="container">
+    <p class="proj-eyebrow" data-i18n="proj.monvoyage.tag">Projet Python</p>
+    <h1 class="proj-title" data-i18n="proj.monvoyage.title">MonVoyage</h1>
+    <p class="proj-subtitle" data-i18n="mv.subtitle">Planificateur de voyages en Python</p>
+    <div class="proj-meta">
+      <span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg><span data-i18n="mv.meta.role">Role</span></span>
+      <span><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span data-i18n="mv.meta.period">Periode</span></span>
+    </div>
+    <div class="proj-actions">
+      <a href="https://github.com/KrisLKN/monvoyage-s3" target="_blank" class="btn btn-primary">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span data-i18n="pp.repo">Code source sur GitHub</span>
+      </a>
+      <a href="../index.html#projects" class="btn btn-outline" data-i18n="pp.backProjects">Tous les projets</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="proj-section" style="border-top:none;">
+    <div class="container reveal">
+      <div class="proj-figures">
+        <div class="fig"><div class="fig-num">6</div><div class="fig-label" data-i18n="fig.mv.1">Classes POO</div></div>
+        <div class="fig"><div class="fig-num">4</div><div class="fig-label" data-i18n="fig.mv.2">Sources de donnees</div></div>
+        <div class="fig"><div class="fig-num">1</div><div class="fig-label" data-i18n="fig.mv.3">Carte interactive</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="container proj-grid reveal">
+      <h2 data-i18n="pp.context">Contexte</h2>
+      <div class="proj-body"><p data-i18n="mv.context.text">...</p></div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="container proj-grid reveal">
+      <h2 data-i18n="pp.objectives">Objectifs</h2>
+      <div class="proj-body">
+        <ul class="obj-list">
+          <li data-i18n="mv.obj.1">...</li>
+          <li data-i18n="mv.obj.2">...</li>
+          <li data-i18n="mv.obj.3">...</li>
+          <li data-i18n="mv.obj.4">...</li>
+          <li data-i18n="mv.obj.5">...</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="container proj-grid reveal">
+      <h2 data-i18n="pp.approach">Demarche</h2>
+      <div class="proj-body">
+        <p data-i18n="mv.approach.text">...</p>
+        <div class="flow-box">Voyage &middot; Ville &middot; Hotel &middot; Restaurant &middot; Attraction &middot; Transport</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="container proj-grid reveal">
+      <h2 data-i18n="pp.stack">Technologies</h2>
+      <div class="proj-body">
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">POO</span><span class="tag">BeautifulSoup</span>
+          <span class="tag">Requests</span><span class="tag">Pandas</span><span class="tag">Folium</span>
+          <span class="tag">Matplotlib</span><span class="tag">API REST</span><span class="tag">Jupyter</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="container proj-grid reveal">
+      <h2 data-i18n="pp.results">Resultats</h2>
+      <div class="proj-body"><p data-i18n="mv.results.text">...</p></div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="container reveal">
+      <h2 style="margin-bottom:14px;" data-i18n="pp.gallery">Galerie</h2>
+      <p class="proj-body" style="margin-bottom:24px;color:var(--muted);" data-i18n="mv.classes.text">...</p>
+      <div class="gallery">
+        <figure class="shot"><img src="../assets/img/projets/monvoyage/meteo.jpg" alt="" loading="lazy"><figcaption data-i18n="mv.cap.meteo">Meteo</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/projets/monvoyage/hotels.jpg" alt="" loading="lazy"><figcaption data-i18n="mv.cap.hotels">Hotels</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/projets/monvoyage/restaurants.jpg" alt="" loading="lazy"><figcaption data-i18n="mv.cap.restaurants">Restaurants</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/projets/monvoyage/budget.jpg" alt="" loading="lazy"><figcaption data-i18n="mv.cap.budget">Budget</figcaption></figure>
+        <figure class="shot"><img src="../assets/img/projets/monvoyage/comparaison.jpg" alt="" loading="lazy"><figcaption data-i18n="mv.cap.comparaison">Comparaison</figcaption></figure>
+        <figure class="shot contain"><img src="../assets/img/projets/monvoyage/classes.jpg" alt="" loading="lazy"><figcaption data-i18n="mv.cap.classes">Diagramme de classes</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="container reveal">
+      <p class="proj-eyebrow" data-i18n="pp.detailed">Version detaillee</p>
+      <h2 style="margin-bottom:8px;" data-i18n="pp.notebook">Notebook complet</h2>
+      <p class="proj-body" style="margin-bottom:22px;color:var(--muted);max-width:680px;" data-i18n="pp.notebookDesc">Le notebook Jupyter integral.</p>
+      <div class="nb-embed">
+        <div class="nb-bar"><div class="nb-dots"><i></i><i></i><i></i></div><span class="nb-name">NOTEBOOK_MONVOYAGE.ipynb</span></div>
+        <iframe src="../assets/notebooks/monvoyage.html" loading="lazy" title="Notebook MonVoyage"></iframe>
+      </div>
+      <div class="nb-actions">
+        <a href="../assets/notebooks/monvoyage.html" target="_blank" class="btn btn-outline">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg>
+          <span data-i18n="pp.openNotebook">Ouvrir en plein ecran</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <p><span data-i18n="footer.by">Fait par</span> <strong>Kris LOKOUN</strong> - <span id="year"></span></p>
+    <a href="../index.html#projects" class="nav-back" data-i18n="pp.backProjects">Tous les projets</a>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="../assets/js/theme.js"></script>
+<script src="../assets/js/i18n.js"></script>
+<script src="../assets/js/lightbox.js"></script>
+</body>
+</html>
