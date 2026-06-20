@@ -22,3 +22,6 @@ Thumbs.db
 
 # === Publies sur GitHub (le site) ===
 # index.html, projets/, assets/, i18n.js, theme.js, project.css, cv.pdf
+
+# Documentation interne (gardee en local, pas publiee)
+README.md
