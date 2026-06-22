@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
   <div class="bg-orbs"><span class="orb orb-1"></span><span class="orb orb-2"></span></div>
@@ -44,6 +44,7 @@
       <div class="fighter-pick" data-side="a">
         <div class="pick-head"><span class="side-dot a"></span><label>Combattant A</label></div>
         <div class="avatar" id="avatar-a"><span class="avatar-ph">A</span></div>
+        <div class="pick-name" id="name-a">—</div>
         <input class="search" id="search-a" placeholder="Rechercher..." autocomplete="off" />
         <select id="select-a" size="6"></select>
       </div>
@@ -53,6 +54,7 @@
       <div class="fighter-pick" data-side="b">
         <div class="pick-head"><span class="side-dot b"></span><label>Combattant B</label></div>
         <div class="avatar" id="avatar-b"><span class="avatar-ph">B</span></div>
+        <div class="pick-name" id="name-b">—</div>
         <input class="search" id="search-b" placeholder="Rechercher..." autocomplete="off" />
         <select id="select-b" size="6"></select>
       </div>
@@ -93,6 +95,6 @@
     <a href="../index.html#projects">portfolio</a>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>

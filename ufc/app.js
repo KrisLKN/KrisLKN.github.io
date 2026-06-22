@@ -99,32 +99,42 @@ function setupPicker(side, defaultName) {
   const select = el(`select-${side}`);
   const search = el(`search-${side}`);
   const avatar = el(`avatar-${side}`);
+  const nameEl = el(`name-${side}`);
 
   const render = (query = "") => {
-    const q = query.toLowerCase();
+    const q = query.toLowerCase().trim();
+    let matches = state.list.filter((f) => f.name.toLowerCase().includes(q)).slice(0, 300);
+    // toujours inclure le combattant deja choisi, meme hors des 300 premiers
+    const sel = state[side];
+    if (sel && !matches.some((f) => f.name === sel) && state.fighters[sel]) {
+      matches = [state.fighters[sel], ...matches];
+    }
     select.innerHTML = "";
-    state.list
-      .filter((f) => f.name.toLowerCase().includes(q))
-      .slice(0, 300)
-      .forEach((f) => {
-        const opt = document.createElement("option");
-        opt.value = f.name;
-        opt.textContent = f.weight_class ? `${f.name} · ${f.weight_class}` : f.name;
-        select.appendChild(opt);
-      });
+    matches.forEach((f) => {
+      const opt = document.createElement("option");
+      opt.value = f.name;
+      opt.textContent = f.weight_class ? `${f.name} · ${f.weight_class}` : f.name;
+      select.appendChild(opt);
+    });
+    if (sel) select.value = sel; // surligne la selection courante
   };
+
   const choose = (name) => {
+    if (!name) return;
     state[side] = name;
+    nameEl.textContent = name;
+    nameEl.classList.add("set");
     avatar.dataset.name = name;
     setAvatar(avatar, name, side);
+    render(search.value);
     refreshButton();
   };
 
-  render();
   search.addEventListener("input", () => render(search.value));
   select.addEventListener("change", () => choose(select.value));
 
-  if (state.fighters[defaultName]) { select.value = defaultName; choose(defaultName); }
+  if (state.fighters[defaultName]) choose(defaultName);
+  else render();
   refreshButton();
 }
 
