@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin — Portfolio Kris LOKOUN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0a0a0a;--surface:#15151a;--border:rgba(255,255,255,.14);--text:#fafafa;--muted:#8a8a8a;--accent:#2eaaff;--ok:#22c55e;--err:#ff5a4d}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Hanken Grotesk',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:32px 18px;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:620px;margin:0 auto}
+    h1{font-family:'Bricolage Grotesque',sans-serif;font-size:1.7rem;font-weight:800;letter-spacing:-.03em;margin-bottom:4px}
+    .sub{color:var(--muted);font-size:.9rem;margin-bottom:26px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px 22px;margin-bottom:18px}
+    .card h2{font-family:'Bricolage Grotesque',sans-serif;font-size:1rem;font-weight:700;margin-bottom:14px;letter-spacing:-.01em}
+    label{display:block;font-size:.82rem;color:var(--muted);margin-bottom:6px;font-weight:600}
+    input[type=text],input[type=password],textarea{width:100%;background:#0e0e12;border:1px solid var(--border);border-radius:10px;color:var(--text);padding:11px 13px;font-size:.9rem;font-family:inherit}
+    input:focus,textarea:focus{outline:none;border-color:var(--accent)}
+    textarea{resize:vertical;min-height:60px}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--border)}
+    .row:last-child{border-bottom:none}
+    .row .name{font-size:.92rem;font-weight:600}
+    .row .desc{font-size:.76rem;color:var(--muted);margin-top:2px}
+    /* switch */
+    .sw{position:relative;width:46px;height:26px;flex-shrink:0}
+    .sw input{opacity:0;width:0;height:0;position:absolute}
+    .slider{position:absolute;inset:0;background:#3a3a42;border-radius:999px;transition:.2s;cursor:pointer}
+    .slider::before{content:'';position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
+    .sw input:checked + .slider{background:var(--accent)}
+    .sw input:checked + .slider::before{transform:translateX(20px)}
+    .btn{width:100%;padding:15px;border:none;border-radius:999px;background:var(--accent);color:#fff;font-family:inherit;font-size:1rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:6px}
+    .btn:hover{transform:translateY(-1px)}
+    .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+    .msg{margin-top:14px;padding:12px 14px;border-radius:10px;font-size:.86rem;font-weight:600;display:none}
+    .msg.ok{display:block;background:rgba(34,197,94,.14);color:var(--ok);border:1px solid rgba(34,197,94,.4)}
+    .msg.err{display:block;background:rgba(255,90,77,.14);color:var(--err);border:1px solid rgba(255,90,77,.4)}
+    .help{font-size:.78rem;color:var(--muted);line-height:1.6;margin-top:8px}
+    .help a{color:var(--accent)}
+    .topbtns{display:flex;gap:10px;margin-bottom:18px}
+    .topbtns a{flex:1;text-align:center;padding:10px;border:1px solid var(--border);border-radius:10px;color:var(--muted);text-decoration:none;font-size:.84rem;font-weight:600}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Pilotage du portfolio</h1>
+    <p class="sub">Active/desactive des sections, publie une annonce, et mets a jour ton site en direct.</p>
+
+    <div class="topbtns">
+      <a href="index.html" target="_blank">Voir le site</a>
+      <a href="https://github.com/KrisLKN/KrisLKN.github.io" target="_blank">Repo GitHub</a>
+    </div>
+
+    <div class="card">
+      <h2>Connexion</h2>
+      <label>Jeton GitHub (fine-grained, droit "Contents: write" sur le repo)</label>
+      <input type="password" id="token" placeholder="github_pat_..." />
+      <div class="help">
+        Genere-le ici : <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">Fine-grained token</a> -
+        Repository access = <b>KrisLKN.github.io</b>, Permissions = <b>Contents: Read and write</b>.
+        Il reste uniquement sur cet appareil.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Sections visibles</h2>
+      <div id="toggles"></div>
+    </div>
+
+    <div class="card">
+      <h2>Annonce (banniere en haut du site)</h2>
+      <div class="row" style="border:none;padding-top:0">
+        <div><div class="name">Afficher l'annonce</div></div>
+        <label class="sw"><input type="checkbox" id="ann-on"><span class="slider"></span></label>
+      </div>
+      <textarea id="ann-text" placeholder="Ex : Disponible pour une alternance data des septembre 2026"></textarea>
+    </div>
+
+    <button class="btn" id="publish">Publier les modifications</button>
+    <div class="msg" id="msg"></div>
+  </div>
+
+  <script>
+    const REPO = "KrisLKN/KrisLKN.github.io";
+    const PATH = "config.json";
+    const SECTIONS = [
+      ["alternanceBadge", "Badge \"en recherche d'alternance\"", "Le bandeau sous ton nom"],
+      ["video", "Video de presentation", ""],
+      ["skills", "Competences", ""],
+      ["projects", "Projets", ""],
+      ["experience", "Parcours / stages", ""],
+      ["reco", "Recommandation", ""],
+      ["cv", "Bandeau \"Travaillons ensemble\"", ""],
+      ["contact", "Contact", ""],
+    ];
+    const $ = (id) => document.getElementById(id);
+    let sha = null;
+
+    // jeton memorise
+    $("token").value = localStorage.getItem("gh_token") || "";
+    $("token").addEventListener("input", () => localStorage.setItem("gh_token", $("token").value.trim()));
+
+    // construire les interrupteurs
+    const tog = $("toggles");
+    SECTIONS.forEach(([key, name, desc]) => {
+      const row = document.createElement("div");
+      row.className = "row";
+      row.innerHTML = `<div><div class="name">${name}</div>${desc ? `<div class="desc">${desc}</div>` : ""}</div>
+        <label class="sw"><input type="checkbox" id="t-${key}" checked><span class="slider"></span></label>`;
+      tog.appendChild(row);
+    });
+
+    function setMsg(text, type) { const m = $("msg"); m.textContent = text; m.className = "msg " + type; }
+    function headers() { return { "Authorization": "Bearer " + $("token").value.trim(), "Accept": "application/vnd.github+json" }; }
+    function b64encode(str) { return btoa(unescape(encodeURIComponent(str))); }
+    function b64decode(str) { return decodeURIComponent(escape(atob(str))); }
+
+    // charger l'etat actuel depuis GitHub (ou le fichier local si pas de jeton)
+    async function load() {
+      try {
+        let cfg;
+        if ($("token").value.trim()) {
+          const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${PATH}`, { headers: headers() });
+          if (res.ok) { const data = await res.json(); sha = data.sha; cfg = JSON.parse(b64decode(data.content)); }
+        }
+        if (!cfg) cfg = await fetch("config.json?b=" + Date.now(), { cache: "no-store" }).then(r => r.json());
+        applyToUI(cfg);
+      } catch (e) { /* on garde les valeurs par defaut */ }
+    }
+
+    function applyToUI(cfg) {
+      const show = cfg.show || {};
+      SECTIONS.forEach(([key]) => { $("t-" + key).checked = show[key] !== false; });
+      $("ann-on").checked = !!(cfg.announcement && cfg.announcement.enabled);
+      $("ann-text").value = (cfg.announcement && cfg.announcement.text) || "";
+    }
+
+    function buildConfig() {
+      const show = {};
+      SECTIONS.forEach(([key]) => { show[key] = $("t-" + key).checked; });
+      return { show, announcement: { enabled: $("ann-on").checked, text: $("ann-text").value.trim() } };
+    }
+
+    $("publish").addEventListener("click", async () => {
+      const token = $("token").value.trim();
+      if (!token) { setMsg("Colle d'abord ton jeton GitHub.", "err"); return; }
+      $("publish").disabled = true; setMsg("Publication en cours...", "ok");
+      try {
+        // recuperer le sha courant (obligatoire pour mettre a jour)
+        const cur = await fetch(`https://api.github.com/repos/${REPO}/contents/${PATH}`, { headers: headers() });
+        if (cur.ok) sha = (await cur.json()).sha;
+        else if (cur.status === 401) throw new Error("Jeton invalide ou expire.");
+        else if (cur.status === 404) sha = null; // le fichier n'existe pas encore
+
+        const body = {
+          message: "Admin: mise a jour de l'affichage du portfolio",
+          content: b64encode(JSON.stringify(buildConfig(), null, 2)),
+          branch: "main",
+        };
+        if (sha) body.sha = sha;
+
+        const put = await fetch(`https://api.github.com/repos/${REPO}/contents/${PATH}`, {
+          method: "PUT", headers: headers(), body: JSON.stringify(body),
+        });
+        if (!put.ok) { const e = await put.json().catch(() => ({})); throw new Error(e.message || ("Erreur " + put.status)); }
+        sha = (await put.json()).content.sha;
+        setMsg("Publie. Ton site se met a jour dans ~1 minute.", "ok");
+      } catch (e) {
+        setMsg("Echec : " + e.message, "err");
+      } finally {
+        $("publish").disabled = false;
+      }
+    });
+
+    load();
+    $("token").addEventListener("change", load);
+  </script>
+</body>
+</html>

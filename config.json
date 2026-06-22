@@ -1,0 +1,16 @@
+{
+  "show": {
+    "alternanceBadge": true,
+    "video": true,
+    "skills": true,
+    "projects": true,
+    "experience": true,
+    "reco": true,
+    "cv": true,
+    "contact": true
+  },
+  "announcement": {
+    "enabled": false,
+    "text": ""
+  }
+}
