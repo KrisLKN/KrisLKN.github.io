@@ -44,6 +44,11 @@ const I18N = {
     "skills.label": "Competences",
     "skills.title": "Stack technique",
     "skills.seenIn": "Vu dans ces projets",
+
+    "reco.label": "Recommandation",
+    "reco.title": "Ce qu'on dit de moi",
+    "reco.quote": "Kris est un etudiant motive, determine et dynamique, pret a relever des defis et a explorer de nouveaux outils. En stage au sein de notre direction, il est attentif aux besoins de nos equipes, soucieux de proposer des solutions adaptees et force de proposition.",
+    "reco.role": "Chargee de mission Systemes d'Information, Ville de Lille - tutrice de stage",
     "skills.s1.name": "Python Data",
     "skills.s1.do": "Collecter des donnees via API et scraping, les nettoyer et les analyser avec pandas, et produire des visualisations.",
     "skills.s2.name": "Bases de donnees & SQL",
@@ -239,6 +244,11 @@ const I18N = {
     "skills.label": "Skills",
     "skills.title": "Tech stack",
     "skills.seenIn": "Seen in these projects",
+
+    "reco.label": "Recommendation",
+    "reco.title": "What people say about me",
+    "reco.quote": "Kris is a motivated, determined and dynamic student, ready to take on challenges and explore new tools. During his internship in our department, he was attentive to our teams' needs, keen to propose suitable solutions and full of initiative.",
+    "reco.role": "Information Systems Project Manager, City of Lille - internship supervisor",
     "skills.s1.name": "Python Data",
     "skills.s1.do": "Collect data via APIs and scraping, clean and analyse it with pandas, and build visualisations.",
     "skills.s2.name": "Databases & SQL",

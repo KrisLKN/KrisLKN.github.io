@@ -505,6 +505,20 @@
     .timeline-shot:hover { border-color: var(--accent); transform: translateY(-2px); }
     .timeline-shot img { width: 100%; display: block; }
 
+    /* === RECOMMANDATION === */
+    .reco-card {
+      max-width: 760px; margin: 0 auto; padding: 40px 44px; border-radius: 22px;
+      background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border); position: relative;
+    }
+    .reco-quote-mark { font-family: 'Bricolage Grotesque', sans-serif; font-size: 5rem; line-height: 0.6; color: var(--accent); opacity: 0.35; height: 36px; display: block; }
+    .reco-text { font-size: 1.15rem; line-height: 1.7; color: var(--text-soft); font-style: italic; margin: 8px 0 26px; }
+    .reco-author { display: flex; align-items: center; gap: 14px; }
+    .reco-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.1rem; flex-shrink: 0; }
+    .reco-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 1rem; }
+    .reco-role { color: var(--muted); font-size: 0.85rem; margin-top: 2px; }
+    @media (max-width: 560px) { .reco-card { padding: 28px 24px; } .reco-text { font-size: 1.02rem; } }
+
     /* === CTA BAND === */
     #cv { padding: 0; }
     .cv-inner {
@@ -962,6 +976,27 @@
           <div class="timeline-title" data-i18n="exp.formation.title">Etudiant BUT Science des Donnees</div>
           <div class="timeline-org" data-i18n="exp.formation.org">IUT de Lille - Parcours VCOD</div>
           <div class="timeline-desc" data-i18n="exp.formation.desc">Formation en 3 ans axee sur la collecte, l'analyse et la valorisation des donnees.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOMMANDATION -->
+<section id="reco">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="section-label" data-i18n="reco.label">Recommandation</p>
+      <h2 class="section-title" data-i18n="reco.title">Ils ont travaille avec moi</h2>
+    </div>
+    <div class="reco-card reveal">
+      <span class="reco-quote-mark">&ldquo;</span>
+      <p class="reco-text" data-i18n="reco.quote">...</p>
+      <div class="reco-author">
+        <div class="reco-avatar">LB</div>
+        <div>
+          <div class="reco-name">Lea Bourges</div>
+          <div class="reco-role" data-i18n="reco.role">Chargee de mission SI, Ville de Lille &middot; tutrice de stage</div>
         </div>
       </div>
     </div>
